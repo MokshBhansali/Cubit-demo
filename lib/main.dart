@@ -35,56 +35,54 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CounterCubit, CounterState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(title: Text(widget.title)),
-          body: BlocListener<CounterCubit, CounterState>(
-            listener: (context, state) {
-              state.wasIncremented == true
-                  ? Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text("Incremented!"),
-                      duration: Duration(milliseconds: 300),
-                    ))
-                  : Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text("Decremented!"),
-                      duration: Duration(milliseconds: 300),
-                    ));
-            },
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('You have pushed the button this many times:'),
-                  Text(state.counterValue.toString(),
-                      style: Theme.of(context).textTheme.headline4),
-                  SizedBox(height: 50),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      FloatingActionButton(
-                        onPressed: () {
-                          BlocProvider.of<CounterCubit>(context).increment();
-                        },
-                        tooltip: 'Decrement',
-                        child: Icon(Icons.remove),
-                      ),
-                      SizedBox(width: 15),
-                      FloatingActionButton(
-                        onPressed: () {
-                          BlocProvider.of<CounterCubit>(context).decrement();
-                        },
-                        tooltip: 'Increment',
-                        child: Icon(Icons.add),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.title)),
+      body: BlocConsumer<CounterCubit, CounterState>(
+        listener: (context, state) {
+          state.wasIncremented == true
+              ? Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("Incremented!"),
+                  duration: Duration(milliseconds: 3000),
+                ))
+              : Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("Decremented!"),
+                  duration: Duration(milliseconds: 3000),
+                ));
+        },
+        builder: (context, state) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('You have pushed the button this many times:'),
+                Text(state.counterValue.toString(),
+                    style: Theme.of(context).textTheme.headline4),
+                SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    FloatingActionButton(
+                      onPressed: () {
+                        BlocProvider.of<CounterCubit>(context).increment();
+                      },
+                      tooltip: 'Decrement',
+                      child: Icon(Icons.remove),
+                    ),
+                    SizedBox(width: 15),
+                    FloatingActionButton(
+                      onPressed: () {
+                        BlocProvider.of<CounterCubit>(context).decrement();
+                      },
+                      tooltip: 'Increment',
+                      child: Icon(Icons.add),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
