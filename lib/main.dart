@@ -42,11 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
           state.wasIncremented == true
               ? Scaffold.of(context).showSnackBar(SnackBar(
                   content: Text("Incremented!"),
-                  duration: Duration(milliseconds: 3000),
+                  duration: Duration(milliseconds: 300),
                 ))
               : Scaffold.of(context).showSnackBar(SnackBar(
                   content: Text("Decremented!"),
-                  duration: Duration(milliseconds: 3000),
+                  duration: Duration(milliseconds: 300),
                 ));
         },
         builder: (context, state) {
