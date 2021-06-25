@@ -4,6 +4,7 @@ part of 'counter_cubit.dart';
 // abstract class CounterState {}
 
 class CounterState {
-  CounterState({@required this.counterValue});
+  CounterState({@required this.counterValue,this.wasIncremented});
   int counterValue;
+  bool wasIncremented;
 }
